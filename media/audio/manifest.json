@@ -1,0 +1,124 @@
+{
+  "album": "Pitty",
+  "tracks": [
+    {
+      "key": "06VLxYGsbNPGUh2crf0J4T",
+      "name": "Sobremesa",
+      "position": 1,
+      "src": "/audio/01.mp3",
+      "bytes": 601430,
+      "start": 35.02,
+      "duration": 30
+    },
+    {
+      "key": "5SFGa6X8mXY3u5WOkfRjGl",
+      "name": "Armadura",
+      "position": 2,
+      "src": "/audio/02.mp3",
+      "bytes": 601429,
+      "start": 44.06,
+      "duration": 30
+    },
+    {
+      "key": "1jtCgFD6H0uQWAnfKhQfM8",
+      "name": "DESOBEDIENTE",
+      "position": 3,
+      "src": "/audio/03.mp3",
+      "bytes": 601433,
+      "start": 143.16,
+      "duration": 30
+    },
+    {
+      "key": "0bRTPRtcjt4OIQA3lTpHLf",
+      "name": "Pileque de Poeta",
+      "position": 4,
+      "src": "/audio/04.mp3",
+      "bytes": 601437,
+      "start": 58.43,
+      "duration": 30
+    },
+    {
+      "key": "7JhukUfgjnmMxrAFGauCNA",
+      "name": "Não à Deriva",
+      "position": 5,
+      "src": "/audio/05.mp3",
+      "bytes": 601457,
+      "start": 60.68,
+      "duration": 30
+    },
+    {
+      "key": "3W79K4xSur1qgGVgmZspez",
+      "name": "Caminhada",
+      "position": 6,
+      "src": "/audio/06.mp3",
+      "bytes": 601430,
+      "start": 62.19,
+      "duration": 30
+    },
+    {
+      "key": "253q3GdAcCYb9FL49oKPrc",
+      "name": "Sobriedade Seletiva",
+      "position": 7,
+      "src": "/audio/07.mp3",
+      "bytes": 601440,
+      "start": 60.91,
+      "duration": 30
+    },
+    {
+      "key": "43PM6Gd6odO0JQmRrs5Dbp",
+      "name": "\"Amiga,\"",
+      "position": 8,
+      "src": "/audio/08.mp3",
+      "bytes": 601429,
+      "start": 114.23,
+      "duration": 30
+    },
+    {
+      "key": "3xZ29iKBzWBTxqDS0D5fuy",
+      "name": "Madame",
+      "position": 9,
+      "src": "/audio/09.mp3",
+      "bytes": 601427,
+      "start": 147.53,
+      "duration": 30
+    },
+    {
+      "key": "6lD7PnajHi8CTKXGdi5hfS",
+      "name": "Álbum de Casamento",
+      "position": 10,
+      "src": "/audio/10.mp3",
+      "bytes": 601469,
+      "start": 50.58,
+      "duration": 30
+    },
+    {
+      "key": "2oWVECApuFjcLnFiGoXXl7",
+      "name": "Prazer, Universo",
+      "position": 11,
+      "src": "/audio/11.mp3",
+      "bytes": 601437,
+      "start": 61.89,
+      "duration": 30
+    },
+    {
+      "key": "1vleSli8vyEctEIhZpmP7B",
+      "name": "Cuidada",
+      "position": 12,
+      "src": "/audio/12.mp3",
+      "bytes": 601428,
+      "start": 58.13,
+      "duration": 30
+    },
+    {
+      "key": "1crsfjsaje3dh0eDjaOG1F",
+      "name": "Nó",
+      "position": 13,
+      "src": "/audio/13.mp3",
+      "bytes": 601437,
+      "start": 60.54,
+      "duration": 30
+    }
+  ],
+  "missing": [],
+  "clipSeconds": 30
+}

@@ -1,0 +1,17 @@
+node_modules
+dist/
+dist-vercel/
+.vercel/
+.wrangler/
+.openai/
+.sites-runtime/
+.env*
+!.env.example
+public/audio-assets/
+public/codigo-fonte.zip
+musicas/
+musicas-originais/
+wrangler.jsonc
+*.sqlite
+*.sqlite3
+*.db

@@ -1,0 +1,162 @@
+{
+  "album": "Pitty",
+  "artist": "Pitty",
+  "providers": {
+    "spotify": {
+      "albumIds": [
+        "7oJsUbfVjaOxKFYTurScsT"
+      ]
+    },
+    "apple": {
+      "albumIds": [
+        "6816252263"
+      ],
+      "source": "https://music.apple.com/br/album/pitty/6816252263",
+      "verifiedTrackCount": 13
+    },
+    "deezer": {
+      "albumIds": [
+        "1106290252"
+      ],
+      "source": "https://www.deezer.com/br/album/1106290252",
+      "verifiedTrackCount": 13,
+      "verifiedAt": "2026-11-16",
+      "note": "IDs conferidos nas páginas públicas de cada faixa; leitura de playlists pela API ainda não testada."
+    }
+  },
+  "tracks": [
+    {
+      "key": "06VLxYGsbNPGUh2crf0J4T",
+      "name": "Sobremesa",
+      "ids": {
+        "spotify": "06VLxYGsbNPGUh2crf0J4T",
+        "apple": "6816252660",
+        "deezer": "4310354042"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "5SFGa6X8mXY3u5WOkfRjGl",
+      "name": "Armadura",
+      "ids": {
+        "spotify": "5SFGa6X8mXY3u5WOkfRjGl",
+        "apple": "6816252663",
+        "deezer": "4310354052"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "1jtCgFD6H0uQWAnfKhQfM8",
+      "name": "DESOBEDIENTE",
+      "ids": {
+        "spotify": "1jtCgFD6H0uQWAnfKhQfM8",
+        "apple": "6816252665",
+        "deezer": "4310354062"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "0bRTPRtcjt4OIQA3lTpHLf",
+      "name": "Pileque de Poeta",
+      "ids": {
+        "spotify": "0bRTPRtcjt4OIQA3lTpHLf",
+        "apple": "6816252668",
+        "deezer": "4310354072"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "7JhukUfgjnmMxrAFGauCNA",
+      "name": "Não à Deriva",
+      "ids": {
+        "spotify": "7JhukUfgjnmMxrAFGauCNA",
+        "apple": "6816252669",
+        "deezer": "4310354082"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "3W79K4xSur1qgGVgmZspez",
+      "name": "Caminhada",
+      "ids": {
+        "spotify": "3W79K4xSur1qgGVgmZspez",
+        "apple": "6816252670",
+        "deezer": "4310354092"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "253q3GdAcCYb9FL49oKPrc",
+      "name": "Sobriedade Seletiva",
+      "ids": {
+        "spotify": "253q3GdAcCYb9FL49oKPrc",
+        "apple": "6816252671",
+        "deezer": "4310354102"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "43PM6Gd6odO0JQmRrs5Dbp",
+      "name": "\"Amiga,\"",
+      "ids": {
+        "spotify": "43PM6Gd6odO0JQmRrs5Dbp",
+        "apple": "6816252672",
+        "deezer": "4310354112"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "3xZ29iKBzWBTxqDS0D5fuy",
+      "name": "Madame",
+      "ids": {
+        "spotify": "3xZ29iKBzWBTxqDS0D5fuy",
+        "apple": "6816252673",
+        "deezer": "4310354122"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "6lD7PnajHi8CTKXGdi5hfS",
+      "name": "Álbum de Casamento",
+      "ids": {
+        "spotify": "6lD7PnajHi8CTKXGdi5hfS",
+        "apple": "6816252682",
+        "deezer": "4310354132"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "2oWVECApuFjcLnFiGoXXl7",
+      "name": "Prazer, Universo",
+      "ids": {
+        "spotify": "2oWVECApuFjcLnFiGoXXl7",
+        "apple": "6816252683",
+        "deezer": "4310354142"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "1vleSli8vyEctEIhZpmP7B",
+      "name": "Cuidada",
+      "ids": {
+        "spotify": "1vleSli8vyEctEIhZpmP7B",
+        "apple": "6816252684",
+        "deezer": "4310354152"
+      },
+      "isrcs": []
+    },
+    {
+      "key": "1crsfjsaje3dh0eDjaOG1F",
+      "name": "Nó",
+      "ids": {
+        "spotify": "1crsfjsaje3dh0eDjaOG1F",
+        "apple": "6816252685",
+        "deezer": "4310354162"
+      },
+      "isrcs": []
+    }
+  ],
+  "source": "Spotify get_collection_items",
+  "verifiedAt": "2026-11-16",
+  "unconfiguredProviders": []
+}

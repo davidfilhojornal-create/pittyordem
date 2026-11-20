@@ -1,0 +1,12 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import catalog from '../server/catalog/pitty.json' with {type:'json'};
+import {parseSpotifyPage,readSpotify} from '../server/spotify.mjs';
+import {validateOrder} from '../server/album-order.mjs';
+const id='1234567890123456789012';const items=catalog.tracks.map(t=>t.ids.spotify);
+const meta=(name,content)=>`<meta name="${name}" content="${content}"/>`;
+function page(ids=items,count=ids.length,playlistId=id){return '<html><head><meta property="og:type" content="music.playlist"/><meta property="og:url" content="https://open.spotify.com/playlist/'+playlistId+'"/><meta property="og:title" content="Minha ordem &amp; Pitty"/>'+ids.map((track,i)=>meta('music:song','https://open.spotify.com/track/'+track)+meta('music:song:track',i+1)).join('')+meta('music:song_count',count)+'</head><body></body></html>'}
+test('Spotify exact album and reversed order preserve every position',()=>{for(const ids of [items,[...items].reverse()]){const parsed=parseSpotifyPage(page(ids),id);assert.equal(parsed.title,'Minha ordem & Pitty');assert.deepEqual(validateOrder(parsed.items,catalog,'spotify'),ids)}});
+test('reject Spotify missing, extra, repeated and wrong track IDs',()=>{for(const ids of [items.slice(1),[...items,items[0]],[...items.slice(1),items[1]],['0000000000000000000000',...items.slice(1)]])assert.throws(()=>validateOrder(parseSpotifyPage(page(ids),id).items,catalog,'spotify'))});
+test('reject larger playlist even when only first 13 songs exposed',()=>assert.throws(()=>parseSpotifyPage(page(items,100),id),/100 faixas/));
+test('reject incomplete page, wrong identity, missing count and unverified position',()=>{for(const html of [page(items.slice(1),13),page(items,13,'different'),page().replace(meta('music:song_count',13),''),page().replace(meta('music:song:track',1),meta('music:song:track',2)),page().replace('music.playlist','music.album')])assert.throws(()=>parseSpotifyPage(html,id))});
+test('unavailable pages cannot create successful reads',async()=>{await assert.rejects(()=>readSpotify({id},async()=>new Response('unavailable',{status:404})));await assert.rejects(()=>readSpotify({id},async()=>{throw new Error('network')}));assert.equal((await readSpotify({id},async(url,opts)=>{assert.equal(opts.redirect,'manual');assert.equal(url,'https://open.spotify.com/playlist/'+id);return new Response(page())})).items.length,13)});

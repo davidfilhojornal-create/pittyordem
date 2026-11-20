@@ -1,0 +1,83 @@
+{
+ "observacao": "Início do trecho de 30 s (refrão) de cada faixa, em segundos. Para ajustar, mude inicio_segundos e rode o preparador de novo.",
+ "faixas": [
+  {
+   "numero": 1,
+   "faixa": "Sobremesa",
+   "inicio_segundos": 35.02,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 2,
+   "faixa": "Armadura",
+   "inicio_segundos": 44.06,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 3,
+   "faixa": "DESOBEDIENTE",
+   "inicio_segundos": 143.16,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 4,
+   "faixa": "Pileque de Poeta",
+   "inicio_segundos": 58.43,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 5,
+   "faixa": "Não à Deriva",
+   "inicio_segundos": 60.68,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 6,
+   "faixa": "Caminhada",
+   "inicio_segundos": 62.19,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 7,
+   "faixa": "Sobriedade Seletiva",
+   "inicio_segundos": 60.91,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 8,
+   "faixa": "\"Amiga,\"",
+   "inicio_segundos": 114.23,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 9,
+   "faixa": "Madame",
+   "inicio_segundos": 147.53,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 10,
+   "faixa": "Álbum de Casamento",
+   "inicio_segundos": 50.58,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 11,
+   "faixa": "Prazer, Universo",
+   "inicio_segundos": 61.89,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 12,
+   "faixa": "Cuidada",
+   "inicio_segundos": 58.13,
+   "duracao_segundos": 30
+  },
+  {
+   "numero": 13,
+   "faixa": "Nó",
+   "inicio_segundos": 60.54,
+   "duracao_segundos": 30
+  }
+ ]
+}

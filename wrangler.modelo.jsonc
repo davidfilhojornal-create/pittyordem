@@ -1,0 +1,19 @@
+{
+  "name": "pitty-na-sua-ordem",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-11-16",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "pitty-playlists",
+      "database_id": "SUBSTITUA_PELO_ID_DO_BANCO",
+      "migrations_dir": "drizzle"
+    }
+  ],
+  "vars": {
+    "DEEZER_MODE": "on",
+    "TURNSTILE_SITE_KEY": "SUA_SITE_KEY_PUBLICA",
+    "TURNSTILE_REQUIRED": "true",
+    "FRONTEND_ORIGINS": "https://pitty-na-sua-ordem.vercel.app"
+  }
+}
