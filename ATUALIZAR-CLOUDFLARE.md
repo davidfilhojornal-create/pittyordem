@@ -2,6 +2,25 @@
 
 Este pacote parte da versão com fotos e animações ligadas. Não crie outro banco.
 
+## Conectar o endereço da Vercel
+
+O frontend publicado está em `https://pittyordem.vercel.app`.
+
+1. Baixe o código atualizado deste repositório (Code → Download ZIP) e copie os arquivos para a pasta atual do projeto, preservando seu `wrangler.jsonc` configurado.
+2. No seu `wrangler.jsonc`, dentro do objeto `vars` já existente, adicione `"FRONTEND_ORIGINS": "https://pittyordem.vercel.app"`. Mantenha todas as outras variáveis e o mesmo banco D1. Confira as vírgulas entre as propriedades.
+3. No painel Cloudflare → Turnstile → seu widget → Hostname Management, adicione `pittyordem.vercel.app`, sem `https://`. Preserve também o hostname antigo. Não é necessário gerar outra Secret Key.
+4. Na pasta do projeto, execute um comando por vez:
+
+```bat
+npm ci
+npm run build:cloudflare
+npx wrangler deploy --assets ./public/audio-assets
+```
+
+A variável sozinha não basta se o Worker ainda estiver na versão antiga: publique também o código atualizado. Não crie outro banco nem cole o arquivo modelo sobre a configuração existente.
+
+5. Abra a Vercel e recarregue a página. O catálogo e as playlists precisam carregar antes de testar um envio real. A validação Turnstile precisa terminar; não desative a proteção para contornar um erro.
+
 ## 1. Atualizar os arquivos
 
 1. Extraia o ZIP e copie os arquivos para sua pasta atual do projeto.
