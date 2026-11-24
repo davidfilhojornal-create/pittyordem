@@ -51,6 +51,7 @@ function tocarAbertura() {
   replay(document.querySelector('#enviar.hero'), 'm-run');
 }
 tocarAbertura();
+if (!reduz.matches && !document.querySelector('#enviar')?.hidden) root.classList.add('m-premiere');
 
 /* Foco de luz */
 let raf = 0, px = 0, py = 0;

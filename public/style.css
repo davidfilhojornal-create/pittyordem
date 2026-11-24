@@ -453,3 +453,19 @@ footer>span{display:block}
 .setlist-story:hover{background:#333}
 .setlist-story:focus-visible{outline:2px solid #0d0d0d;outline-offset:3px}
 @media(max-width:480px){#playlist-list{gap:36px}.playlist-card.setlist-card{padding:30px 20px 18px}.playlist-card.setlist-card .participant-name{font-size:26px}}
+
+/* Abertura: fotografia emerge da sombra, assinatura e conteúdo em sequência. */
+@media(prefers-reduced-motion:no-preference){
+ html.m-premiere .backdrop{animation:pitty-exposure 1.8s cubic-bezier(.16,1,.3,1) both;transform-origin:62% 30%}
+ html.m-premiere header .wordmark,html.m-premiere header .background-player{animation:pitty-header .8s ease-out .12s both}
+ html.m-assinatura .hero-logo.m-run{animation:m-escrever 1.25s cubic-bezier(.22,1,.36,1) .08s both,pitty-logo-arrive 1.3s cubic-bezier(.16,1,.3,1) both}
+ html.m-entrada .hero.m-run .intro h1 em{animation:pitty-title .85s cubic-bezier(.16,1,.3,1) .38s both}
+ html.m-entrada .hero.m-run .intro .lead{animation:m-subir .7s ease-out .57s both}
+ html.m-entrada .hero.m-run .submit-card{animation:m-subir .8s cubic-bezier(.16,1,.3,1) .72s both}
+ html.m-entrada .hero.m-run .intro::after{content:'';display:block;width:76px;height:1px;background:linear-gradient(90deg,transparent,#ffffff80,transparent);margin:22px auto 0;transform-origin:center;animation:pitty-line 1s cubic-bezier(.16,1,.3,1) .5s both}
+ @keyframes pitty-exposure{from{opacity:0;transform:scale(1.035)}to{opacity:1;transform:scale(1)}}
+ @keyframes pitty-header{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+ @keyframes pitty-logo-arrive{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+ @keyframes pitty-title{from{opacity:0;transform:translateY(16px);letter-spacing:.08em}to{opacity:1;transform:none;letter-spacing:0}}
+ @keyframes pitty-line{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
+}

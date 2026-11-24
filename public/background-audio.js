@@ -1,4 +1,4 @@
-export const INITIAL_VOLUME=.15;
+export const INITIAL_VOLUME=.08;
 export function availableTracks(manifest){
  const tracks=manifest?.tracks;
  if(!Array.isArray(tracks))return [];
@@ -32,6 +32,20 @@ export function createPlayback(audio,tracks,{onChange=()=>{},createContext=()=>{
  audio.addEventListener('error',()=>{busy=false;error='Áudio indisponível. Tente a próxima faixa.';update()});
  return {play,pause,next,setVolume,state};
 }
+// Try native autoplay; when blocked, retry once on a real user gesture.
+export function startBackgroundPlayback(player,target,region){
+ let listening=true;
+ function stop(){if(!listening)return;listening=false;target.removeEventListener('pointerdown',gesture,true);target.removeEventListener('keydown',gesture,true)}
+ function gesture(event){
+  if(!event.isTrusted||['Shift','Control','Alt','Meta'].includes(event.key))return;
+  stop();if(region?.contains(event.target)||player.state().playing)return;
+  void player.play();
+ }
+ target.addEventListener('pointerdown',gesture,{capture:true,passive:true});
+ target.addEventListener('keydown',gesture,true);
+ void player.play().then(()=>{if(player.state().playing)stop()});
+ return stop;
+}
 function el(tag,text,cls){const e=document.createElement(tag);if(text)e.textContent=text;if(cls)e.className=cls;return e}
 let initialized=false;
 export async function initBackgroundAudio(){
@@ -52,5 +66,5 @@ export async function initBackgroundAudio(){
   region.classList.toggle('is-playing',s.playing);status.textContent=s.error||'';
  }});
  toggle.onclick=()=>player.state().playing?player.pause():void player.play();next.onclick=()=>void player.next();volume.oninput=()=>player.setVolume(volume.value);
- // Deliberately no autoplay, stored playing state, or audio prefetch.
+ startBackgroundPlayback(player,document,region);
 }
