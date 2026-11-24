@@ -193,6 +193,7 @@ document.addEventListener('focusin',revealFocusedField);
 window.visualViewport?.addEventListener('resize',revealFocusedField);
 
 /* ---------- Início ---------- */
+// Audio is independent of catalog requests and the Turnstile script.
+void initBackgroundAudio();
 try{const data=await api('/api/catalog');catalog=data.tracks;try{await turnstileGate.configure(data.security)}catch(error){setStatus($('#feedback'),error.message)}if(data.providers?.deezer){document.querySelectorAll('.platforms').forEach(e=>e.textContent='Spotify, Apple Music ou Deezer');$('#playlist-url').placeholder='Cole o link da sua playlist'}catalog.forEach(t=>$('#track-list').append(node('li',t.name)))}catch(e){setStatus($('#feedback'),e.message)}route();
 
-void initBackgroundAudio();
