@@ -6,9 +6,9 @@ class Element{constructor(){this.children=[];this.value='';this.checked=false;th
 function setup(reply,status=201,displayName='Ana Maria'){
  const nodes=new Map(),el=s=>{if(!nodes.has(s))nodes.set(s,new Element());return nodes.get(s)};
  const pages=['enviar','playlists','resultados'].map(id=>Object.assign(el('#'+id),{id,hidden:id!=='enviar'}));
- const requests=[],scrolls=[];const context=vm.createContext({console,AbortController,CustomEvent:class{},dispatchEvent(){},location:{hash:'#enviar'},window:{addEventListener(){},scrollTo(options){scrolls.push(options);this.scrollY=options.top}},document:{querySelector:el,querySelectorAll:s=>s==='.page'?pages:[],createElement:()=>new Element(),createTextNode:s=>s},fetch:async(path,options)=>{requests.push({path,options});return path==='/api/submit'?new Response(JSON.stringify(reply),{status}):new Response(JSON.stringify({items:[{id:'saved',displayName,title:'Minha playlist',platform:'spotify',order:[],verifiedAt:new Date().toISOString()}],nextCursor:null}))}});
+ const requests=[],scrolls=[],stories=[];const context=vm.createContext({openStoryCard:async(item)=>{stories.push(item)},console,AbortController,CustomEvent:class{},dispatchEvent(){},location:{hash:'#enviar'},window:{addEventListener(){},scrollTo(options){scrolls.push(options);this.scrollY=options.top}},document:{querySelector:el,querySelectorAll:s=>s==='.page'?pages:[],createElement:()=>new Element(),createTextNode:s=>s},fetch:async(path,options)=>{requests.push({path,options});return path==='/api/submit'?new Response(JSON.stringify(reply),{status}):new Response(JSON.stringify({items:[{id:'saved',displayName,title:'Minha playlist',platform:'spotify',order:[],verifiedAt:new Date().toISOString()}],nextCursor:null}))}});
  vm.runInContext(source,context);el('#display-name').value='Ana Maria';el('#playlist-url').value='https://open.spotify.com/playlist/example';el('#consent').checked=true;
- return {el,context,requests,scrolls,async send(){await el('#submission').onsubmit({preventDefault(){},target:{querySelector:()=>new Element()}});await new Promise(r=>setImmediate(r))}};
+ return {el,context,requests,scrolls,stories,async send(){await el('#submission').onsubmit({preventDefault(){},target:{querySelector:()=>new Element()}});await new Promise(r=>setImmediate(r))}};
 }
 test('successful submit sends name, opens playlists without hash event, and renders saved name/platform',async()=>{
  const c=setup({accepted:true,submission:{id:'saved',displayName:'Ana Maria',platform:'spotify'},order:[],message:'Aceita'});await c.send();
@@ -42,4 +42,19 @@ test('insights render readable text titles with separate singular/plural counts'
  assert.equal(c.el('#pairs').children[0].children[1].textContent,'1 vez');assert.equal(c.el('#pairs').children[1].children[1].textContent,'2 vezes');
  assert.equal(c.el('#sequences').children[0].children[0].children[1].textContent,'1 playlist');assert.equal(c.el('#sequences').children[1].children[0].children[1].textContent,'2 playlists');
  assert.equal(c.el('#pairs').children[0].children[0].textContent,'Sobriedade Seletiva → Álbum de Casamento');
+});
+
+test('confirmed submission opens a story with the saved name, platform and exact returned order',async()=>{
+ const order=Array.from({length:13},(_,i)=>'track-'+i);
+ const c=setup({accepted:true,submission:{id:'saved',displayName:'Nome confirmado',platform:'deezer'},order,message:'Aceita'});
+ await c.send();assert.equal(c.context.location.hash,'#playlists');assert.equal(c.stories.length,1);
+ assert.equal(c.stories[0].displayName,'Nome confirmado');assert.equal(c.stories[0].platform,'deezer');assert.deepEqual(c.stories[0].order,order);
+});
+test('duplicate or rejected submission never automatically opens a story',async()=>{
+ for(const status of [409,422]){const c=setup({error:'Não aceito'},status);await c.send();assert.equal(c.stories.length,0)}
+});
+test('story failure never turns a saved submission into a failed submission',async()=>{
+ const c=setup({accepted:true,submission:{id:'saved',displayName:'Ana Maria',platform:'spotify'},order:[],message:'Aceita'});
+ c.context.openStoryCard=async()=>{throw new Error('Canvas unavailable')};await c.send();
+ assert.equal(c.context.location.hash,'#playlists');assert.match(c.el('#playlist-feedback').textContent,/Playlist salva/);assert.equal(c.el('#display-name').value,'');
 });
