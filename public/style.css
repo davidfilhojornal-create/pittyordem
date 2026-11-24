@@ -469,3 +469,17 @@ footer>span{display:block}
  @keyframes pitty-title{from{opacity:0;transform:translateY(16px);letter-spacing:.08em}to{opacity:1;transform:none;letter-spacing:0}}
  @keyframes pitty-line{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
 }
+
+/* Reversible premiere experiment: the actual hero title moves into its place. */
+.opening-curtain{position:fixed;inset:0;background:#000;z-index:90;pointer-events:none}
+.opening-skip{position:fixed;right:24px;bottom:24px;z-index:130;border:1px solid #ffffff40;border-radius:30px;background:#090909;color:#bbb;padding:10px 18px;font-family:var(--body);font-size:12px}
+.opening-letter{display:inline-block}
+html.m-cinema .intro h1{position:relative;z-index:100;transform-origin:center;will-change:transform}
+html.m-cinema .hero-logo,html.m-cinema .hero.m-run .intro h1 em{animation:none!important;mask-image:none!important;-webkit-mask-image:none!important}
+html.m-cinema .intro h1 em{color:#fff}
+html.m-cinema .background-player{z-index:120}
+html.m-cinema header .wordmark,html.m-cinema nav,html.m-cinema .hero .lead,html.m-cinema .submit-card,html.m-cinema footer{opacity:0!important;pointer-events:none;animation:none!important}
+html.m-cinema .hero .intro::after,html.m-cinema-done .hero .intro::after{display:none}
+html.m-cinema-done .hero-logo,html.m-cinema-done .hero .intro h1 em{animation:none!important;mask-image:none!important;-webkit-mask-image:none!important}
+@media(max-width:480px){.opening-skip{right:18px;bottom:20px}}
+@media(prefers-reduced-motion:reduce){.opening-curtain,.opening-skip{display:none}}

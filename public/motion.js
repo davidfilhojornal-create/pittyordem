@@ -50,8 +50,47 @@ function tocarAbertura() {
   replay(document.querySelector('.hero-logo'), 'm-run');
   replay(document.querySelector('#enviar.hero'), 'm-run');
 }
-tocarAbertura();
-if (!reduz.matches && !document.querySelector('#enviar')?.hidden) root.classList.add('m-premiere');
+// Experimental cinematic entrance; previous version is tagged in GitHub.
+// It runs only on the initial Enviar page, never on deep links or tab changes.
+async function aberturaCinema(){
+ const hero=document.querySelector('#enviar'),heading=hero?.querySelector('h1'),logo=heading?.querySelector('img'),subtitle=heading?.querySelector('em');
+ if(!hero||!heading||!logo||!subtitle||reduz.matches||!on('entrada')||!['','#enviar'].includes(location.hash)){tocarAbertura();return}
+ root.classList.add('m-cinema');
+ const curtain=document.createElement('div');curtain.className='opening-curtain';curtain.setAttribute('aria-hidden','true');
+ const skip=document.createElement('button');skip.type='button';skip.className='opening-skip';skip.textContent='Pular abertura ↗';
+ document.body.append(curtain,skip);
+ const animations=[];let stopped=false,watchdog;const original=subtitle.textContent;
+ function finish(){
+  if(stopped)return;stopped=true;clearTimeout(watchdog);animations.forEach(a=>a.cancel());
+  subtitle.textContent=original;subtitle.removeAttribute('aria-label');heading.style.removeProperty('transform');
+  root.classList.remove('m-cinema');root.classList.add('m-cinema-done');curtain.remove();skip.remove();
+  document.removeEventListener('keydown',keyboard);window.removeEventListener('resize',finish);reduz.removeEventListener?.('change',finish);
+  if(location.hash&&location.hash!=='#enviar')return;
+  const elements=[document.querySelector('header .wordmark'),document.querySelector('nav'),hero.querySelector('.lead'),hero.querySelector('.submit-card'),document.querySelector('footer')];
+  if(!reduz.matches)elements.filter(Boolean).forEach((el,i)=>el.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{duration:500,delay:i*60,easing:'cubic-bezier(.16,1,.3,1)'}));
+ }
+ function keyboard(e){if(['Escape','Tab'].includes(e.key))finish()}
+ skip.onclick=finish;document.addEventListener('keydown',keyboard);window.addEventListener('resize',finish);reduz.addEventListener?.('change',finish);
+ window.addEventListener('hashchange',finish,{once:true});
+ watchdog=setTimeout(finish,4800);
+ try{
+  await Promise.race([Promise.all([logo.decode().catch(()=>{}),document.fonts?.ready]),new Promise(resolve=>setTimeout(resolve,500))]);
+  if(stopped)return;
+  const rect=heading.getBoundingClientRect();
+  const scale=Math.min(2.15,(innerWidth-40)/rect.width,(innerHeight*.56)/rect.height);
+  const x=innerWidth/2-(rect.left+rect.width/2),y=innerHeight*.46-(rect.top+rect.height/2);
+  const centered=`translate(${x}px,${y}px) scale(${scale})`;
+  heading.style.transform=centered;
+  animations.push(logo.animate([{clipPath:'inset(0 100% 0 0)',opacity:0},{clipPath:'inset(0 0% 0 0)',opacity:1}],{duration:1250,easing:'cubic-bezier(.4,0,.2,1)',fill:'both'}));
+  subtitle.setAttribute('aria-label',original);subtitle.replaceChildren();
+  [...original].forEach((char,i)=>{const span=document.createElement('span');span.textContent=char===' '? '\u00a0':char;span.setAttribute('aria-hidden','true');span.className='opening-letter';subtitle.append(span);animations.push(span.animate([{opacity:0,clipPath:'inset(0 100% 0 0)'},{opacity:1,clipPath:'inset(0 0 0 0)'}],{duration:230,delay:620+i*62,fill:'both'}))});
+  await new Promise(resolve=>setTimeout(resolve,1750));if(stopped)return;
+  const flight=heading.animate([{transform:centered},{transform:'translate(0,0) scale(1)'}],{duration:950,easing:'cubic-bezier(.76,0,.24,1)',fill:'forwards'});animations.push(flight);
+  animations.push(curtain.animate([{opacity:1},{opacity:0}],{duration:650,delay:350,fill:'forwards'}));
+  await flight.finished;finish();
+ }catch{finish()}
+}
+void aberturaCinema();
 
 /* Foco de luz */
 let raf = 0, px = 0, py = 0;
